@@ -9,10 +9,10 @@ body {
 }
 
 .dark body {
-    background-color: #3a302d;
-    /* Dark Cocoa */
-    color: #e5e0dc;
-    /* Warm Light Gray */
+    background-color: #594f4b;
+    /* Pale Dark Brown */
+    color: #f3e9e4;
+    /* Pale Warm White */
 }
 
 #particle-canvas {
@@ -27,7 +27,7 @@ body {
 }
 
 .dark #particle-canvas {
-    background-color: #3a302d;
+    background-color: #594f4b;
 }
 
 #cursor-particle-canvas {
@@ -50,8 +50,8 @@ header.scrolled {
 }
 
 .dark header.scrolled {
-    background-color: rgba(58, 48, 45, 0.85);
-    box-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.3);
+    background-color: rgba(89, 79, 75, 0.85);
+    box-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.2);
 }
 
 .nav-link {
@@ -85,6 +85,14 @@ header.scrolled {
 
 .nav-link.active {
     color: #fb7185;
+}
+
+.dark .nav-link:hover {
+    color: #f3e9e4;
+}
+
+.dark .nav-link::after {
+    background-color: #f3e9e4;
 }
 
 
@@ -260,10 +268,10 @@ body.menu-open-blur header {
 /* ダークモード */
 .dark .hero-gradient {
     background: linear-gradient(180deg,
-            rgba(58, 48, 45, 0) 0%,
-            rgba(58, 48, 45, 0) 50%,
-            rgba(58, 48, 45, 0.9) 90%,
-            rgba(58, 48, 45, 1) 100%);
+            rgba(89, 79, 75, 0) 0%,
+            rgba(89, 79, 75, 0) 50%,
+            rgba(89, 79, 75, 0.9) 90%,
+            rgba(89, 79, 75, 1) 100%);
 }
 
 .hero-text-custom {
@@ -274,7 +282,7 @@ body.menu-open-blur header {
 }
 
 .dark .hero-text-custom {
-    text-shadow: 2px 2px 0px rgba(58, 48, 45, 0.8);
+    text-shadow: 2px 2px 0px rgba(89, 79, 75, 0.6);
     -webkit-text-stroke: 1px #fff5ea;
 }
 
@@ -302,13 +310,13 @@ body.menu-open-blur header {
 }
 
 .dark .icon-link {
-    background-color: rgba(45, 36, 32, 0.8);
-    color: #dcd3ce;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: rgba(110, 99, 94, 0.8);
+    color: #f3e9e4;
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .dark .icon-link:hover {
-    background-color: #453935;
+    background-color: #6e635e;
     color: #fbaf71;
     border-color: #fedccd;
 }
@@ -339,9 +347,9 @@ body.menu-open-blur header {
 }
 
 .dark .hero-particle-new {
-    background: rgba(255, 200, 150, 0.15);
-    /* Warm Orange-ish */
-    box-shadow: 0 0 15px 5px rgba(255, 200, 150, 0.1);
+    background: rgba(255, 220, 180, 0.2);
+    /* Softer Warm */
+    box-shadow: 0 0 15px 5px rgba(255, 220, 180, 0.15);
 }
 
 .avatar-hover-effect {
@@ -356,6 +364,30 @@ body.menu-open-blur header {
 /* History Section (Simplified & Cute) */
 .history-bg {
     background-color: transparent;
+}
+
+/* History Dark Mode Overrides */
+.dark .timeline-card {
+    background-color: #6e635e !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+}
+
+.dark .timeline-card h3 {
+    color: #f3e9e4 !important;
+}
+
+.dark .timeline-card p {
+    color: #e5e0dc !important;
+}
+
+.dark .timeline-dot {
+    border-color: #594f4b !important;
+    box-shadow: 0 0 0 4px rgba(89, 79, 75, 0.5);
+}
+
+.dark .timeline-card:hover {
+    background-color: #7d716b !important;
 }
 
 
@@ -437,7 +469,7 @@ body.menu-open-blur header {
 }
 
 .dark .illustration-card {
-    background-color: #453935;
+    background-color: #6e635e;
 }
 
 .illustration-card:hover {
@@ -449,6 +481,10 @@ body.menu-open-blur header {
     background: linear-gradient(to top, rgba(69, 57, 53, 0.8) 0%, rgba(69, 57, 53, 0) 50%);
 }
 
+.dark .ill-overlay {
+    background: linear-gradient(to top, rgba(110, 99, 94, 0.8) 0%, rgba(110, 99, 94, 0) 50%);
+}
+
 
 /* Lightbox */
 .lightbox-overlay {
@@ -457,7 +493,7 @@ body.menu-open-blur header {
 }
 
 .dark .lightbox-overlay {
-    background-color: rgba(45, 36, 32, 0.95);
+    background-color: rgba(89, 79, 75, 0.95);
 }
 
 .lightbox-close-btn {
@@ -519,7 +555,7 @@ body.menu-open-blur header {
 }
 
 .dark #mobile-menu {
-    background-color: rgba(45, 36, 32, 0.98);
+    background-color: rgba(89, 79, 75, 0.98);
 }
 
 /* Footer */
@@ -529,8 +565,8 @@ body.menu-open-blur header {
 }
 
 .dark .footer-bg {
-    background-color: #2d2420;
-    border-top: 1px solid #453935;
+    background-color: #4a403c;
+    border-top: 1px solid #6e635e;
 }
 
 
@@ -616,8 +652,8 @@ footer {
 }
 
 .dark .footer-bg {
-    background-color: #453935;
-    border: 1px solid #525252;
+    background-color: #6e635e;
+    border: 1px solid #888;
 }
 
 .heading-animate-line {
@@ -727,7 +763,7 @@ footer {
 
 
 .dark .about-card-content {
-    background-color: rgba(62, 39, 35, 0.8);
+    background-color: rgba(98, 77, 72, 0.8);
 }
 
 .dark .about-card-container {
