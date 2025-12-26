@@ -17,19 +17,19 @@ const pastelHues = [0, 10, 25, 40, 330, 340, 350]; // Reds, Oranges, Pinks
 
 const particleColors = {
     light: {
-        particle: 'rgba(156, 163, 175, 0.5)', 
-        line: '156, 163, 175' 
+        particle: 'rgba(253, 186, 116, 0.5)', // Pale Orange
+        line: '253, 186, 116'
     },
     dark: {
-        particle: 'rgba(107, 114, 128, 0.4)', 
-        line: '107, 114, 128' 
+        particle: 'rgba(214, 200, 190, 0.4)', // Pale Warm Grey/Brown
+        line: '214, 200, 190'
     }
 };
 
 
 const updateParticleColors = (dark) => {
     const newColor = dark ? particleColors.dark.particle : particleColors.light.particle;
-    
+
     for (let i = 0; i < particles.length; i++) {
         if (particles[i]) {
             particles[i].color = newColor;
@@ -48,43 +48,43 @@ const applyTheme = (dark) => {
         htmlEl.classList.remove('dark');
         localStorage.setItem('theme', 'light');
     }
-    
-    
+
+
     isDarkMode = dark;
-    
-    
+
+
     updateParticleColors(dark);
 };
 
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    
+
     const themeToggles = document.querySelectorAll('.theme-toggle');
-    
-    
+
+
     const savedTheme = localStorage.getItem('theme');
-    
+
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-    
+
     let initialDarkMode = false;
     if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
         initialDarkMode = true;
     }
 
-    
+
     applyTheme(initialDarkMode);
 
-    
+
     themeToggles.forEach(toggle => {
         toggle.addEventListener('click', () => {
-            
+
             applyTheme(!isDarkMode);
         });
     });
 
-    
+
     const menuBtn = document.getElementById('menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
     const menuLinks = document.querySelectorAll('.menu-link');
@@ -106,41 +106,41 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    
-    
+
+
     const sectionsFadeInUp = document.querySelectorAll('.fade-in-up');
     const sectionsFadeInRight = document.querySelectorAll('.fade-in-right');
 
-    
+
     const animatedHeadings = document.querySelectorAll('#history h2.fade-in-up, #gallery h2.fade-in-up');
 
     if ('IntersectionObserver' in window) {
-        
-        
+
+
         const observerOnce = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('is-visible');
-                    
+
                     if (entry.target.classList.contains('gallery-item') && entry.target.style.transitionDelay) {
                         entry.target.style.transitionDelay = '0s';
                     }
 
-                    observer.unobserve(entry.target); 
+                    observer.unobserve(entry.target);
                 }
             });
-        }, { 
-            threshold: 0.1, 
-            rootMargin: '0px 0px -50px 0px' 
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
         });
 
-        
+
         sectionsFadeInRight.forEach(section => {
             observerOnce.observe(section);
         });
-        
-        
-        const animatedHeadingsSet = new Set(animatedHeadings); 
+
+
+        const animatedHeadingsSet = new Set(animatedHeadings);
         sectionsFadeInUp.forEach(section => {
             if (!animatedHeadingsSet.has(section)) {
                 observerOnce.observe(section);
@@ -148,20 +148,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
 
-        
+
         if (animatedHeadings.length > 0) {
             const headingObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('is-visible');
                     } else {
-                        
+
                         entry.target.classList.remove('is-visible');
                     }
                 });
-            }, { 
-                threshold: 0.1, 
-                rootMargin: '0px 0px -50px 0px' 
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
             });
 
             animatedHeadings.forEach(heading => {
@@ -170,14 +170,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
     } else {
-        
-        
+
+
         [...sectionsFadeInUp, ...sectionsFadeInRight].forEach(section => {
             section.classList.add('is-visible');
         });
     }
 
-    
+
     const header = document.querySelector('header');
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
@@ -187,7 +187,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    
+
     const sectionsForNav = document.querySelectorAll('main > section[id]');
     const navLinks = document.querySelectorAll('.nav-link');
     const mobileNavLinks = document.querySelectorAll('#mobile-menu .menu-link');
@@ -197,7 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
             link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
         });
         mobileNavLinks.forEach(link => {
-            
+
             link.classList.toggle('text-blue-500', link.getAttribute('href') === `#${id}`);
             link.classList.toggle('text-gray-800', link.getAttribute('href') !== `#${id}`);
         });
@@ -206,7 +206,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if ('IntersectionObserver' in window) {
         const navObserver = new IntersectionObserver((entries) => {
             const heroEntry = entries.find(entry => entry.target.id === 'hero');
-            
+
             if (heroEntry && heroEntry.isIntersecting && heroEntry.intersectionRatio >= 0.5) {
                 navLinks.forEach(link => link.classList.remove('active'));
                 mobileNavLinks.forEach(link => {
@@ -216,7 +216,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 const intersectingEntries = entries
                     .filter(entry => entry.isIntersecting && entry.target.id !== 'hero');
-                
+
                 if (intersectingEntries.length > 0) {
                     const topEntry = intersectingEntries.reduce((prev, current) => {
                         return (prev.boundingClientRect.top < current.boundingClientRect.top) ? prev : current;
@@ -224,8 +224,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     makeLinksActive(topEntry.target.id);
                 }
             }
-        }, { 
-            threshold: [0.1, 0.5, 0.9], 
+        }, {
+            threshold: [0.1, 0.5, 0.9],
             rootMargin: '-50% 0px -50% 0px'
         });
 
@@ -243,15 +243,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // Previously complex history line animation logic has been removed
     // Now it uses the standard 'fade-in-up' observer which is already handled above.
 
-    
+
     const canvas = document.getElementById('particle-canvas');
     if (canvas) {
-        ctx = canvas.getContext('2d'); 
+        ctx = canvas.getContext('2d');
 
         const resizeCanvas = () => {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
-            initParticles(); 
+            initParticles();
         };
 
         class Particle {
@@ -285,13 +285,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const initParticles = () => {
-            particles = []; 
-            
-            let particleCount = Math.floor(canvas.width / 30); 
-            if (particleCount < 40) particleCount = 40; 
+            particles = [];
+
+            let particleCount = Math.floor(canvas.width / 30);
+            if (particleCount < 40) particleCount = 40;
             if (particleCount > 100) particleCount = 100;
 
-            
+
             const initialColor = isDarkMode ? particleColors.dark.particle : particleColors.light.particle;
 
             for (let i = 0; i < particleCount; i++) {
@@ -299,17 +299,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 let x = Math.random() * (canvas.width - radius * 2) + radius;
                 let y = Math.random() * (canvas.height - radius * 2) + radius;
                 let dx = (Math.random() - 0.5) * 0.8;
-                let dy = (Math.random() - 0.5) * 0.8; 
-                
-                particles.push(new Particle(x, y, dx, dy, radius, initialColor)); 
+                let dy = (Math.random() - 0.5) * 0.8;
+
+                particles.push(new Particle(x, y, dx, dy, radius, initialColor));
             }
         };
 
-        
+
         const connectParticles = () => {
             let maxDistance = 100;
-            
-            
+
+
             const currentLineColor = isDarkMode ? particleColors.dark.line : particleColors.light.line;
 
             for (let a = 0; a < particles.length; a++) {
@@ -319,7 +319,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     let distance = Math.sqrt(dx * dx + dy * dy);
 
                     if (distance < maxDistance) {
-                        ctx.strokeStyle = `rgba(${currentLineColor}, ${1 - distance / maxDistance})`; 
+                        ctx.strokeStyle = `rgba(${currentLineColor}, ${1 - distance / maxDistance})`;
                         ctx.lineWidth = 0.5;
                         ctx.beginPath();
                         ctx.moveTo(particles[a].x, particles[a].y);
@@ -330,7 +330,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         };
 
-        
+
         const animate = () => {
             animationFrameId = requestAnimationFrame(animate);
             ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -338,29 +338,29 @@ document.addEventListener('DOMContentLoaded', () => {
             for (let i = 0; i < particles.length; i++) {
                 particles[i].update();
             }
-            connectParticles(); 
+            connectParticles();
         };
 
         window.addEventListener('resize', resizeCanvas);
-        resizeCanvas(); 
-        
+        resizeCanvas();
+
         if (animationFrameId) {
             cancelAnimationFrame(animationFrameId);
         }
-        animate(); 
+        animate();
 
     } else {
         console.warn("'#particle-canvas' not found");
     }
 
-    
+
     const lightbox = document.getElementById('lightbox');
     const lightboxImage = document.getElementById('lightbox-image');
     const lightboxCloseBtn = document.getElementById('lightbox-close');
     const galleryItems = document.querySelectorAll('.gallery-scroller-item');
 
     if (lightbox && lightboxImage && lightboxCloseBtn && galleryItems.length > 0) {
-        
+
         const openLightbox = (imgSrc) => {
             lightboxImage.src = imgSrc;
             lightbox.classList.add('show');
@@ -372,7 +372,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.body.classList.remove('lightbox-open');
             setTimeout(() => {
                 lightboxImage.src = '';
-            }, 300); 
+            }, 300);
         };
 
         galleryItems.forEach(item => {
@@ -404,7 +404,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
         lightboxCloseBtn.addEventListener('click', (e) => {
-            e.stopPropagation(); 
+            e.stopPropagation();
             closeLightbox();
         });
 
@@ -418,15 +418,15 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
     }
 
-    
+
     const cursorCanvas = document.getElementById('cursor-particle-canvas');
     if (cursorCanvas) {
-        cursorCtx = cursorCanvas.getContext('2d'); 
-        cursorParticles = []; 
-        rippleParticles = []; 
-        mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 }; 
-        let prevMouse = { x: mouse.x, y: mouse.y }; 
-        let frameCount = 0; 
+        cursorCtx = cursorCanvas.getContext('2d');
+        cursorParticles = [];
+        rippleParticles = [];
+        mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+        let prevMouse = { x: mouse.x, y: mouse.y };
+        let frameCount = 0;
 
         const resizeCursorCanvas = () => {
             cursorCanvas.width = window.innerWidth;
@@ -434,14 +434,14 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         window.addEventListener('resize', resizeCursorCanvas);
-        resizeCursorCanvas(); 
+        resizeCursorCanvas();
 
-        
+
         window.addEventListener('mousemove', (e) => {
             mouse.x = e.clientX;
             mouse.y = e.clientY;
         });
-        
+
         window.addEventListener('touchstart', (e) => {
             if (e.touches.length > 0) {
                 mouse.x = e.touches[0].clientX;
@@ -455,7 +455,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }, { passive: true });
 
-        
+
         window.addEventListener('click', (e) => {
             createRipple(e.clientX, e.clientY);
         });
@@ -465,57 +465,57 @@ document.addEventListener('DOMContentLoaded', () => {
             constructor(x, y) {
                 this.x = x;
                 this.y = y;
-                
-                this.vx = (Math.random() - 0.5) * 2.0; 
-                this.vy = (Math.random() - 0.5) * 2.0; 
-                
+
+                this.vx = (Math.random() - 0.5) * 2.0;
+                this.vy = (Math.random() - 0.5) * 2.0;
+
                 this.gravity = 0.01;
-                this.radius = Math.random() * 4 + 2; 
-                
-                this.life = 80 + Math.random() * 50; 
+                this.radius = Math.random() * 4 + 2;
+
+                this.life = 80 + Math.random() * 50;
                 this.maxLife = this.life;
-                
+
                 this.shape = ['circle', 'heart'][Math.floor(Math.random() * 2)];
-                
+
                 this.hue = pastelHues[Math.floor(Math.random() * pastelHues.length)];
-                
+
                 this.angle = Math.random() * Math.PI * 2;
                 this.rotationSpeed = (Math.random() - 0.5) * 0.08;
             }
 
             update() {
                 this.life--;
-                
+
                 this.vx *= 0.98;
                 this.vy *= 0.98;
-                
+
                 this.vy += this.gravity;
-                
+
                 this.angle += this.rotationSpeed;
-                
+
                 this.x += this.vx;
                 this.y += this.vy;
             }
 
             draw() {
                 if (this.life <= 0) return;
-                
-                
+
+
                 const opacity = Math.max(0, this.life / this.maxLife);
                 const radius = Math.max(0, this.radius * (this.life / this.maxLife));
-                
+
                 cursorCtx.save();
-                
-                
+
+
                 cursorCtx.fillStyle = `hsla(${this.hue}, 80%, 85%, ${opacity})`;
-                
-                
+
+
                 cursorCtx.translate(this.x, this.y);
                 cursorCtx.rotate(this.angle);
-                
+
                 cursorCtx.beginPath();
 
-                
+
                 if (this.shape === 'circle') {
                     cursorCtx.arc(0, 0, radius, 0, Math.PI * 2, false);
                 } else if (this.shape === 'heart') {
@@ -527,111 +527,111 @@ document.addEventListener('DOMContentLoaded', () => {
                     cursorCtx.bezierCurveTo(0, radius, radius, radius * 0.6, radius, radius * 0.3);
                     cursorCtx.bezierCurveTo(radius, 0, 0, 0, 0, radius * 0.3);
                 }
-                
+
                 cursorCtx.fill();
                 cursorCtx.restore();
             }
         }
 
-        
+
         class RippleParticle {
             constructor(x, y) {
                 this.x = x;
                 this.y = y;
                 this.radius = 1;
-                this.maxRadius = 40 + Math.random() * 30; 
-                this.life = 1; 
+                this.maxRadius = 40 + Math.random() * 30;
+                this.life = 1;
                 this.hue = pastelHues[Math.floor(Math.random() * pastelHues.length)];
             }
 
             update() {
-                
+
                 this.radius += (this.maxRadius - this.radius) * 0.04;
-                
+
                 this.life -= 0.015;
             }
 
             draw() {
                 if (this.life <= 0) return;
-                
+
                 cursorCtx.beginPath();
                 cursorCtx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
-                
+
                 cursorCtx.strokeStyle = `hsla(${this.hue}, 80%, 85%, ${this.life})`;
                 cursorCtx.lineWidth = 3;
                 cursorCtx.stroke();
             }
         }
 
-        
+
         const createRipple = (x, y) => {
-            
+
             for (let i = 0; i < 3; i++) {
                 rippleParticles.push(new RippleParticle(x, y));
             }
         };
 
         const createCursorParticles = () => {
-            
-            if (mouse.x !== null && frameCount % 3 === 0) { 
+
+            if (mouse.x !== null && frameCount % 3 === 0) {
                 cursorParticles.push(new CursorParticle(mouse.x, mouse.y));
             }
         };
 
         const animateCursorParticles = () => {
-            
+
             cursorCtx.clearRect(0, 0, cursorCanvas.width, cursorCanvas.height);
 
-            frameCount++; 
+            frameCount++;
 
-            
+
             const mouseMoved = mouse.x !== prevMouse.x || mouse.y !== prevMouse.y;
 
-            
-            if (mouse.x !== null && mouseMoved) { 
+
+            if (mouse.x !== null && mouseMoved) {
                 createCursorParticles();
             }
 
-            
+
             for (let i = cursorParticles.length - 1; i >= 0; i--) {
                 const p = cursorParticles[i];
                 p.update();
                 p.draw();
 
-                
+
                 if (p.life <= 0) {
                     cursorParticles.splice(i, 1);
                 }
             }
-            
-            
+
+
             for (let i = rippleParticles.length - 1; i >= 0; i--) {
                 const r = rippleParticles[i];
                 r.update();
                 r.draw();
-                
+
                 if (r.life <= 0) {
                     rippleParticles.splice(i, 1);
                 }
             }
 
-            
-            if (cursorParticles.length > 200) { 
+
+            if (cursorParticles.length > 200) {
                 cursorParticles.splice(0, cursorParticles.length - 200);
             }
 
-            
+
             prevMouse.x = mouse.x;
             prevMouse.y = mouse.y;
 
             cursorAnimationId = requestAnimationFrame(animateCursorParticles);
         };
 
-        
+
         if (cursorAnimationId) {
             cancelAnimationFrame(cursorAnimationId);
         }
-        animateCursorParticles(); 
+        animateCursorParticles();
 
     }
 

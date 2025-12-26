@@ -347,9 +347,9 @@ body.menu-open-blur header {
 }
 
 .dark .hero-particle-new {
-    background: rgba(255, 220, 180, 0.2);
-    /* Softer Warm */
-    box-shadow: 0 0 15px 5px rgba(255, 220, 180, 0.15);
+    background: rgba(214, 200, 190, 0.25) !important;
+    /* Pale Warm Grey/Brown */
+    box-shadow: 0 0 15px 5px rgba(214, 200, 190, 0.15) !important;
 }
 
 .avatar-hover-effect {
