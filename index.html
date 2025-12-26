@@ -167,224 +167,90 @@
         </section>
 
 
-        
-        <section id="history" class="py-16 md:py-24 history-bg overflow-hidden">
-            <div class="container mx-auto px-6">
+        <!-- History Section (Renewed & Compact) -->
+        <section id="history" class="py-12 md:py-20 history-bg overflow-hidden relative">
+            <div class="container mx-auto px-6 relative z-10">
                 
-                <h2 class="text-4xl font-bold text-center mb-12 md:mb-16 text-cream-800 fade-in-up">
+                <h2 class="text-4xl font-bold text-center mb-12 text-cream-800 fade-in-up">
                     <span class="heading-animate-line">History</span>
                 </h2>
 
-                
-                <div class="hidden md:block relative max-w-6xl mx-auto timeline-horizontal">
-                    
-                    <div class="absolute left-0 w-full h-8 flex items-center timeline-arrow-wrapper">
-                        
-                        <div class="history-line absolute h-full w-full bg-transparent flex">
-                            
-                            <div class="arrow-segment timeline-segment timeline-segment-1"></div>
-                            <div class="arrow-segment timeline-segment timeline-segment-2"></div>
-                            <div class="arrow-segment timeline-segment timeline-segment-3"></div>
-                            <div class="arrow-segment timeline-segment timeline-segment-4"></div>
-                            <div class="arrow-segment timeline-segment timeline-segment-5"></div>
+                <div class="new-timeline max-w-4xl mx-auto relative">
+                    <!-- Central Line -->
+                    <div class="absolute left-4 md:left-1/2 top-0 h-full w-0.5 bg-rose-200/60 dark:bg-rose-900/40 md:-translate-x-1/2 border-r-2 border-dashed border-rose-300 dark:border-rose-800/50"></div>
+
+                    <!-- Item 1 -->
+                    <div class="timeline-row mb-8 flex flex-col md:flex-row items-center w-full fade-in-up">
+                        <div class="timeline-content md:w-1/2 md:pr-12 md:text-right pl-12 md:pl-0 text-left w-full order-1">
+                            <div class="timeline-card p-5 bg-white dark:bg-cocoa-800 rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 border border-rose-100 dark:border-cocoa-700 relative">
+                                <span class="text-rose-400 font-bold text-sm tracking-widest block mb-1">2022.03.06</span>
+                                <h3 class="text-xl font-bold text-cocoa-800 dark:text-white mb-2">VRChat デビュー</h3>
+                                <p class="text-cocoa-600 dark:text-cream-200 text-sm mb-3">初めてVRの世界へ。正直あんまり覚えてません！</p>
+                                <img src="https://pbs.twimg.com/media/FRkUO1zVgAMwtp3?format=jpg&name=large" alt="VRChat デビュー" class="w-full h-24 object-cover rounded-lg cursor-pointer hover:opacity-90 transition-opacity">
+                            </div>
                         </div>
+                        <div class="timeline-dot absolute left-4 md:left-1/2 w-4 h-4 rounded-full bg-rose-400 border-4 border-white dark:border-cocoa-900 md:-translate-x-1/2 z-10 shadow-sm order-2"></div>
+                        <div class="md:w-1/2 md:pl-12 order-3 hidden md:block"></div> <!-- Spacer -->
                     </div>
 
-                    
-                    <div class="relative flex justify-between w-full h-auto">
-                        
-                        
-                        
-                        <div class="timeline-item timeline-item-bottom fade-in-up group" style="transition-delay: 0.2s;">
-                            <div class="timeline-content-wrapper">
-                                <div class="timeline-year font-extrabold">2022.03.06</div>
-                                <div class="timeline-description text-gray-700 mt-2 text-base">VRChat デビュー</div>
-                            </div>
-                            <div class="timeline-icon-box">
-                                <i class="fa-solid fa-rocket timeline-icon"></i>
-                            </div>
-                            <div class="history-popup-horizontal">
-                                <img src="https://pbs.twimg.com/media/FRkUO1zVgAMwtp3?format=jpg&name=large" alt="VRChat デビュー" class="w-full h-32 object-cover">
-                                <div class="p-4">
-                                    <h4 class="font-bold text-gray-800">VRChat デビュー</h4>
-                                    <p class="text-sm text-gray-600 mt-1">初めてVRの世界へ。正直あんまり覚えてません！</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        
-                        <div class="timeline-item timeline-item-top fade-in-up group" style="transition-delay: 0.2s;">
-                            <div class="timeline-content-wrapper">
-                                <div class="timeline-year font-extrabold text-2xl">2022.09.28</div>
-                                <div class="timeline-description text-gray-700 mt-2 text-base">紫枠</div>
-                            </div>
-                            <div class="timeline-icon-box">
-                                <i class="fa-solid fa-arrow-up"></i>
-                            </div>
-                            <div class="history-popup-horizontal">
-                                <div class="p-4">
-                                    <h4 class="font-bold text-gray-800">トラステッド</h4>
-                                    <p class="text-sm text-gray-600 mt-1">ついにトラステッドユーザー、、、</p>
-                                </div>
-                                <img src="https://pbs.twimg.com/media/Fd4Z7YsaMAAKhea?format=jpg&name=medium" alt="トラステッド" class="w-full h-32 object-cover">
-                            </div>
-                        </div>
-
-                        
-                        <div class="timeline-item timeline-item-bottom fade-in-up group" style="transition-delay: 0.4s;">
-                            <div class="timeline-icon-box">
-                                <i class="fa-solid fa-person"></i>
-                            </div>
-                            <div class="timeline-content-wrapper">
-                                <div class="timeline-year font-extrabold text-2xl">2024.05.15</div>
-                                <div class="timeline-description text-gray-700 mt-2 text-base">ライムちゃん</div>
-                            </div>
-                            <div class="history-popup-horizontal">
-                                <img src="https://pbs.twimg.com/media/GNlu5l0a4AAo8Bx?format=jpg&name=large" alt="ライムちゃん" class="w-full h-32 object-cover">
-                                <div class="p-4">
-                                    <h4 class="font-bold text-gray-800">ライムちゃんになる</h4>
-                                    <p class="text-sm text-gray-600 mt-1">フレンドさんからいただいてライムちゃんになりました</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        
-                        <div class="timeline-item timeline-item-top fade-in-up group" style="transition-delay: 0.6s;">
-                            <div class="timeline-content-wrapper">
-                                <div class="timeline-year font-extrabold text-2xl">2024.11.11</div>
-                                <div class="timeline-description text-gray-700 mt-2 text-base">シフォンちゃん</div>
-                            </div>
-                            <div class="timeline-icon-box">
-                                <i class="fa-solid fa-person"></i>
-                            </div>
-                            <div class="history-popup-horizontal">
-                                <div class="p-4">
-                                    <h4 class="font-bold text-gray-800">シフォンちゃんになる</h4>
-                                    <p class="text-sm text-gray-600 mt-1">シフォンちゃん似合いそうと言われたのでシフォンちゃんになりました</p>
-                                </div>
-                                <img src="https://pbs.twimg.com/media/Gd_f-Pta0AED6lb?format=jpg&name=large" alt="シフォンちゃん" class="w-full h-32 object-cover">
-                            </div>
-                        </div>
-
-                        
-                        <div class="timeline-item timeline-item-bottom fade-in-up group" style="transition-delay: 0.8s;">
-                            <div class="timeline-icon-box">
-                                <i class="fa-solid fa-earth-americas timeline-icon"></i>
-                            </div>
-                            <div class="timeline-content-wrapper">
-                                <div class="timeline-year font-extrabold text-2xl">2025.11.24</div>
-                                <div class="timeline-description text-gray-700 mt-2 text-base">ショコラちゃん</div>
-                            </div>
-                            <div class="history-popup-horizontal">
-                                <img src="https://pbs.twimg.com/media/G8CkJzcbcAAd0GB?format=jpg&name=large" alt="NoImage" class="w-full h-32 object-cover">
-                                <div class="p-4">
-                                    <h4 class="font-bold text-gray-800">ショコラちゃんになる</h4>
-                                    <p class="text-sm text-gray-600 mt-1">1年遅れでショコラちゃんに……</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                
-                <div class="md:hidden max-w-2xl mx-auto relative timeline-vertical">
-                    
-                    <div class="history-line-mobile absolute left-2 top-0 w-0.5 text-gray-500"></div>
-                    
-                    
-                    <div class="relative pl-16 mb-12 group fade-in-up">
-                        <div class="timeline-icon-box-mobile">
-                            <i class="fa-solid fa-rocket timeline-icon"></i>
-                        </div>
-                        <div class="timeline-content-wrapper-mobile">
-                            
-                            <div class="timeline-year font-extrabold text-xl">2022.03.06</div>
-                            <div class="timeline-description text-gray-700 mt-1 text-base">VRChat デビュー</div>
-                        </div>
-                        <div class="history-popup-mobile">
-                            <img src="https://pbs.twimg.com/media/FRkUO1zVgAMwtp3?format=jpg&name=large" alt="VRChat デビュー" class="w-full h-32 object-cover rounded-t-lg">
-                            <div class="p-4">
-                                <h4 class="font-bold text-gray-800">VRChat デビュー</h4>
-                                <p class="text-sm text-gray-600 mt-1">初めてVRの世界へ。正直あんまり覚えてません！</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    
-                    <div class="relative pl-16 mb-12 group fade-in-up">
-                        <div class="timeline-icon-box-mobile">
-                            <i class="fa-solid fa-arrow-up timeline-icon"></i>
-                        </div>
-                        <div class="timeline-content-wrapper-mobile">
-                            
-                            <div class="timeline-year font-extrabold text-xl">2022.09.28</div>
-                            <div class="timeline-description text-gray-700 mt-1 text-base">紫枠</div>
-                        </div>
-                        <div class="history-popup-mobile">
-                            <img src="https://pbs.twimg.com/media/Fd4Z7YsaMAAKhea?format=jpg&name=medium" alt="VRChat デビュー" class="w-full h-32 object-cover rounded-t-lg">
-                            <div class="p-4">
-                                <h4 class="font-bold text-gray-800">トラステッド</h4>
-                                <p class="text-sm text-gray-600 mt-1">ついにトラステッドユーザー、、、</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    
-                    <div class="relative pl-16 mb-12 group fade-in-up" style="transition-delay: 0.1s;">
-                        <div class="timeline-icon-box-mobile">
-                            <i class="fa-solid fa-person"></i>
-                        </div>
-                        <div class="timeline-content-wrapper-mobile">
-                            
-                            <div class="timeline-year font-extrabold text-xl">2024.05.15</div>
-                            <div class="timeline-description text-gray-700 mt-1 text-base">ライムちゃん</div>
-                        </div>
-                        <div class="history-popup-mobile">
-                            <img src="https://pbs.twimg.com/media/GNlu5l0a4AAo8Bx?format=jpg&name=large" alt="ライムちゃん" class="w-full h-32 object-cover rounded-t-lg">
-                            <div class="p-4">
-                                <h4 class="font-bold text-gray-800">ライムちゃんになる</h4>
-                                <p class="text-sm text-gray-600 mt-1">フレンドさんからいただいてライムちゃんになりました</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    
-                    <div class="relative pl-16 mb-12 group fade-in-up" style="transition-delay: 0.2s;">
-                        <div class="timeline-icon-box-mobile">
-                            <i class="fa-solid fa-person"></i>
-                        </div>
-                        <div class="timeline-content-wrapper-mobile">
-                            
-                            <div class="timeline-year font-extrabold text-xl">2024.11.11</div>
-                            <div class="timeline-description text-gray-700 mt-1 text-base">シフォンちゃん</div>
-                        </div>
-                        <div class="history-popup-mobile">
-                            <img src="https://pbs.twimg.com/media/Gd_f-Pta0AED6lb?format=jpg&name=large" alt="シフォンちゃん" class="w-full h-32 object-cover rounded-t-lg">
-                            <div class="p-4">
-                                <h4 class="font-bold text-gray-800">シフォンちゃんになる</h4>
-                                <p class="text-sm text-gray-600 mt-1">シフォンちゃん似合いそうと言われたのでシフォンちゃんになりました</p>
+                    <!-- Item 2 -->
+                    <div class="timeline-row mb-8 flex flex-col md:flex-row items-center w-full fade-in-up" style="transition-delay: 0.1s;">
+                        <div class="md:w-1/2 md:pr-12 order-1 hidden md:block"></div> <!-- Spacer -->
+                        <div class="timeline-dot absolute left-4 md:left-1/2 w-4 h-4 rounded-full bg-rose-400 border-4 border-white dark:border-cocoa-900 md:-translate-x-1/2 z-10 shadow-sm order-2"></div>
+                        <div class="timeline-content md:w-1/2 md:pl-12 pl-12 md:text-left text-left w-full order-3">
+                            <div class="timeline-card p-5 bg-white dark:bg-cocoa-800 rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 border border-rose-100 dark:border-cocoa-700 relative">
+                                <span class="text-rose-400 font-bold text-sm tracking-widest block mb-1">2022.09.28</span>
+                                <h3 class="text-xl font-bold text-cocoa-800 dark:text-cream-100 mb-2">トラステッド</h3>
+                                <p class="text-cocoa-600 dark:text-cream-200 text-sm mb-3">ついにトラステッドユーザー、、、</p>
+                                <img src="https://pbs.twimg.com/media/Fd4Z7YsaMAAKhea?format=jpg&name=medium" alt="トラステッド" class="w-full h-24 object-cover rounded-lg cursor-pointer hover:opacity-90 transition-opacity">
                             </div>
                         </div>
                     </div>
 
-                    
-                    <div class="relative pl-16 mb-12 group fade-in-up" style="transition-delay: 0.3s;">
-                        <div class="timeline-icon-box-mobile">
-                            <i class="fa-solid fa-earth-americas timeline-icon"></i>
+                    <!-- Item 3 -->
+                    <div class="timeline-row mb-8 flex flex-col md:flex-row items-center w-full fade-in-up" style="transition-delay: 0.2s;">
+                        <div class="timeline-content md:w-1/2 md:pr-12 md:text-right pl-12 md:pl-0 text-left w-full order-1">
+                            <div class="timeline-card p-5 bg-white dark:bg-cocoa-800 rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 border border-rose-100 dark:border-cocoa-700 relative">
+                                <span class="text-rose-400 font-bold text-sm tracking-widest block mb-1">2024.05.15</span>
+                                <h3 class="text-xl font-bold text-cocoa-800 dark:text-cream-100 mb-2">ライムちゃんになる</h3>
+                                <p class="text-cocoa-600 dark:text-cream-200 text-sm mb-3">フレンドさんからいただいてライムちゃんになりました</p>
+                                <img src="https://pbs.twimg.com/media/GNlu5l0a4AAo8Bx?format=jpg&name=large" alt="ライムちゃん" class="w-full h-24 object-cover rounded-lg cursor-pointer hover:opacity-90 transition-opacity">
+                            </div>
                         </div>
-                        <div class="timeline-content-wrapper-mobile">
-                            
-                            <div class="timeline-year font-extrabold text-xl">2025.11.24</div>
-                            <div class="timeline-description text-gray-700 mt-1 text-base">ショコラちゃん</div>
-                        </div>
-                        <div class="history-popup-mobile">
-                            <img src="https://pbs.twimg.com/media/G8CkJzcbcAAd0GB?format=jpg&name=large" alt="未定" class="w-full h-32 object-cover rounded-t-lg">
-                            <div class="p-4">
-                                <h4 class="font-bold text-gray-800">ショコラちゃんになる</h4>
-                                <p class="text-sm text-gray-600 mt-1">1年遅れでショコラちゃんに……</p>
+                        <div class="timeline-dot absolute left-4 md:left-1/2 w-4 h-4 rounded-full bg-rose-400 border-4 border-white dark:border-cocoa-900 md:-translate-x-1/2 z-10 shadow-sm order-2"></div>
+                        <div class="md:w-1/2 md:pl-12 order-3 hidden md:block"></div> <!-- Spacer -->
+                    </div>
+
+                    <!-- Item 4 -->
+                    <div class="timeline-row mb-8 flex flex-col md:flex-row items-center w-full fade-in-up" style="transition-delay: 0.3s;">
+                        <div class="md:w-1/2 md:pr-12 order-1 hidden md:block"></div> <!-- Spacer -->
+                        <div class="timeline-dot absolute left-4 md:left-1/2 w-4 h-4 rounded-full bg-rose-400 border-4 border-white dark:border-cocoa-900 md:-translate-x-1/2 z-10 shadow-sm order-2"></div>
+                        <div class="timeline-content md:w-1/2 md:pl-12 pl-12 md:text-left text-left w-full order-3">
+                            <div class="timeline-card p-5 bg-white dark:bg-cocoa-800 rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 border border-rose-100 dark:border-cocoa-700 relative">
+                                <span class="text-rose-400 font-bold text-sm tracking-widest block mb-1">2024.11.11</span>
+                                <h3 class="text-xl font-bold text-cocoa-800 dark:text-cream-100 mb-2">シフォンちゃんになる</h3>
+                                <p class="text-cocoa-600 dark:text-cream-200 text-sm mb-3">シフォンちゃん似合いそうと言われたのでシフォンちゃんになりました</p>
+                                <img src="https://pbs.twimg.com/media/Gd_f-Pta0AED6lb?format=jpg&name=large" alt="シフォンちゃん" class="w-full h-24 object-cover rounded-lg cursor-pointer hover:opacity-90 transition-opacity">
                             </div>
                         </div>
                     </div>
+
+                     <!-- Item 5 -->
+                     <div class="timeline-row mb-8 flex flex-col md:flex-row items-center w-full fade-in-up" style="transition-delay: 0.4s;">
+                        <div class="timeline-content md:w-1/2 md:pr-12 md:text-right pl-12 md:pl-0 text-left w-full order-1">
+                            <div class="timeline-card p-5 bg-white dark:bg-cocoa-800 rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 border border-rose-100 dark:border-cocoa-700 relative">
+                                <span class="text-rose-400 font-bold text-sm tracking-widest block mb-1">2025.11.24</span>
+                                <h3 class="text-xl font-bold text-cocoa-800 dark:text-cream-100 mb-2">ショコラちゃんになる</h3>
+                                <p class="text-cocoa-600 dark:text-cream-200 text-sm mb-3">1年遅れでショコラちゃんに……</p>
+                                <img src="https://pbs.twimg.com/media/G8CkJzcbcAAd0GB?format=jpg&name=large" alt="ショコラちゃん" class="w-full h-24 object-cover rounded-lg cursor-pointer hover:opacity-90 transition-opacity">
+                            </div>
+                        </div>
+                        <div class="timeline-dot absolute left-4 md:left-1/2 w-4 h-4 rounded-full bg-rose-400 border-4 border-white dark:border-cocoa-900 md:-translate-x-1/2 z-10 shadow-sm order-2"></div>
+                        <div class="md:w-1/2 md:pl-12 order-3 hidden md:block"></div> <!-- Spacer -->
+                    </div>
+
+                    <!-- End Dot -->
+                    <div class="absolute left-4 md:left-1/2 bottom-0 w-3 h-3 rounded-full bg-rose-200 dark:bg-rose-900 md:-translate-x-1/2 translate-y-full"></div>
                 </div>
             </div>
         </section>

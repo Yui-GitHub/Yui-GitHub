@@ -1,4 +1,3 @@
-
 let isDarkMode = false;
 let ctx = null;
 let particles = [];
@@ -240,26 +239,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    
-    const historySection = document.getElementById('history');
-    const historyLine = document.querySelector('.history-line'); 
-    const historyLineMobile = document.querySelector('.history-line-mobile'); 
-    
-    if (historySection && (historyLine || historyLineMobile)) {
-        const historyObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    if (historyLine) historyLine.classList.add('animate-draw');
-                    if (historyLineMobile) historyLineMobile.classList.add('animate-draw');
-                    historyObserver.unobserve(historySection);
-                }
-            });
-        }, { 
-            threshold: 0.3, 
-            rootMargin: '0px 0px -100px 0px' 
-        });
-        historyObserver.observe(historySection);
-    }
+    // --- REFACTORED HISTORY SECTION LOGIC ---
+    // Previously complex history line animation logic has been removed
+    // Now it uses the standard 'fade-in-up' observer which is already handled above.
 
     
     const canvas = document.getElementById('particle-canvas');
@@ -405,6 +387,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         });
+
+        // Also add click listener for History items images
+        // Since we rewrote the HTML, we need to attach listeners to the new .timeline-card images
+        // But since they are dynamic or just refactored, let's use a delegate or re-query
+        const historyImages = document.querySelectorAll('.timeline-card img');
+        historyImages.forEach(img => {
+            img.addEventListener('click', () => {
+                let highResSrc = img.src;
+                if (highResSrc.includes('pbs.twimg.com')) {
+                    highResSrc = highResSrc.replace(/&name=[^&]+/, '') + '&name=orig';
+                }
+                openLightbox(highResSrc);
+            });
+        });
+
 
         lightboxCloseBtn.addEventListener('click', (e) => {
             e.stopPropagation(); 
@@ -638,76 +635,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     }
 
-    
+    // Removed: adjustHistoryYearFontSizes() logic as the new design uses simpler, consistent typography.
 
-    function adjustHistoryYearFontSizes() {
-        const yearSelectors = '.timeline-year';
-        const MIN_FONT_SIZE = 10; 
-
-        const yearElements = document.querySelectorAll(yearSelectors);
-        if (yearElements.length === 0) return;
-
-        yearElements.forEach(elem => {
-            
-            elem.style.fontSize = ''; 
-            elem.style.whiteSpace = ''; 
-
-            
-            
-            let currentSize = parseFloat(window.getComputedStyle(elem).fontSize) || 22;
-            
-            
-            const checkOverflow = (el) => {
-                
-                if (!el || el.clientWidth === 0) return false;
-
-                
-                const originalWhitespace = el.style.whiteSpace;
-                el.style.whiteSpace = 'nowrap';
-
-                
-                
-                const isOverflowing = el.scrollWidth > (el.clientWidth + 1);
-
-                
-                
-                el.style.whiteSpace = originalWhitespace; 
-
-                return isOverflowing;
-            };
-
-            
-            
-            
-            elem.style.fontSize = currentSize + 'px';
-            
-            
-            while (checkOverflow(elem) && currentSize > MIN_FONT_SIZE) {
-                currentSize --; 
-                elem.style.fontSize = currentSize + 'px';
-            }
-            
-            
-            
-            
-            elem.style.whiteSpace = ''; 
-        });
-    }
-
-    
-    
-    adjustHistoryYearFontSizes();
-
-    
-    
-    let resizeTimer;
-    window.addEventListener('resize', () => {
-        
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(() => {
-            adjustHistoryYearFontSizes();
-        }, 100); 
-    });
-
-
-}); 
+});
