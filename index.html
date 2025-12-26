@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+
+<html lang="ja" class="scroll-smooth">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yui's profile</title>
+    
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class', 
+            theme: {
+                extend: {}
+            }
+        }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="antialiased selection:bg-rose-200 selection:text-rose-900 dark:selection:bg-rose-900 dark:selection:text-rose-100">
+
+    <canvas id="particle-canvas"></canvas>
+    
+    <canvas id="cursor-particle-canvas"></canvas>
+
+
+    
+    <!-- Header -->
+    <header class="fixed top-0 left-0 w-full z-50 transition-all duration-300">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="#" class="text-2xl font-bold text-cocoa-600 dark:text-cream-100 transition-colors duration-300 hover:text-rose-400 dark:hover:text-rose-400 flex items-center gap-2">
+                Yui's Profile
+            </a>
+            
+            <!-- Mobile Controls -->
+            <div class="flex items-center space-x-3 md:hidden">
+                <button class="theme-toggle" aria-label="テーマを切り替え">
+                    <div class="theme-icon-wrapper">
+                        <i class="fas fa-moon icon-moon text-lg"></i>
+                        <i class="fas fa-sun icon-sun text-lg"></i>
+                    </div>
+                </button>
+                
+                <button id="menu-btn" class="z-50 p-2 focus:outline-none" aria-label="メニューを開く">
+                    <div class="space-y-1.5 w-6">
+                        <span class="hamburger-line line-1 block w-full transition-all duration-300"></span>
+                        <span class="hamburger-line line-2 block w-full transition-all duration-300"></span>
+                        <span class="hamburger-line line-3 block w-full transition-all duration-300"></span>
+                    </div>
+                </button>
+            </div>
+
+            <!-- Desktop Nav -->
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#" class="nav-link text-cocoa-600 dark:text-cream-200">Top</a>
+                <a href="#about" class="nav-link text-cocoa-600 dark:text-cream-200">About</a>
+                <a href="#history" class="nav-link text-cocoa-600 dark:text-cream-200">History</a>
+                <a href="#gallery" class="nav-link text-cocoa-600 dark:text-cream-200">Gallery</a>
+                <a href="#illustrations" class="nav-link text-cocoa-600 dark:text-cream-200">Illustrations</a>
+
+                <button class="theme-toggle" aria-label="テーマを切り替え">
+                    <div class="theme-icon-wrapper">
+                        <i class="fas fa-moon icon-moon text-lg"></i>
+                        <i class="fas fa-sun icon-sun text-lg"></i>
+                    </div>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    
+    
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 z-40 flex flex-col justify-center items-center space-y-8 transform translate-x-full transition-transform duration-500 ease-in-out backdrop-blur-md">
+        <a href="#" class="menu-link text-3xl font-bold text-cocoa-800 dark:text-cream-100 hover:text-rose-400 transition-colors">Top</a>
+        <a href="#about" class="menu-link text-3xl font-bold text-cocoa-800 dark:text-cream-100 hover:text-rose-400 transition-colors">About</a>
+        <a href="#history" class="menu-link text-3xl font-bold text-cocoa-800 dark:text-cream-100 hover:text-rose-400 transition-colors">History</a>
+        <a href="#gallery" class="menu-link text-3xl font-bold text-cocoa-800 dark:text-cream-100 hover:text-rose-400 transition-colors">Gallery</a>
+        <a href="#illustrations" class="menu-link text-3xl font-bold text-cocoa-800 dark:text-cream-100 hover:text-rose-400 transition-colors">Illustrations</a>
+    </div>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="h-screen flex items-end justify-center pb-24 relative hero-bg overflow-hidden">
+            <!-- Particles -->
+            <div class="absolute inset-0 z-0">
+                <!-- Creating specific positions for floaty particles -->
+                <div class="hero-particle-new" style="top: 20%; left: 15%; width: 20px; height: 20px; animation-delay: -2s;"></div>
+                <div class="hero-particle-new" style="top: 60%; left: 80%; width: 30px; height: 30px; animation-delay: -5s; background: rgba(253, 186, 116, 0.4);"></div>
+                <div class="hero-particle-new" style="top: 40%; left: 40%; width: 15px; height: 15px; animation-delay: -1s;"></div>
+                <div class="hero-particle-new" style="top: 75%; left: 10%; width: 25px; height: 25px; animation-delay: -7s; background: rgba(254, 205, 211, 0.4);"></div>
+                <div class="hero-particle-new" style="top: 15%; left: 70%; width: 18px; height: 18px; animation-delay: -3s;"></div>
+            </div>
+            
+            <div class="absolute inset-0 hero-gradient z-20 pointer-events-none"></div>
+            
+            <div class="relative text-center z-30 fade-in-up"> 
+                <h1 class="text-7xl md:text-9xl font-black text-cream-800 dark:text-cream-50 tracking-tight hero-text-custom font-['Mochiy_Pop_P_One']" style="font-family: 'Mochiy Pop P One', sans-serif;">
+                    Yui
+                </h1>
+                <p class="text-xl md:text-2xl text-cocoa-600 dark:text-cream-200 font-medium tracking-wide">
+                    VRChat's silent player
+                </p>
+                
+                <!-- Social Icons -->
+                <div class="flex justify-center space-x-6 mt-10">
+                    <a href="https://vrchat.com/home/user/usr_789764d1-b216-486b-9711-c9702863626c" target="_blank" class="icon-link" aria-label="VRChat">
+                        <i class="fa-solid fa-gamepad"></i> <!-- Changed icon for better clarity -->
+                    </a>
+                    <a href="https://x.com/Yui_VRChat" target="_blank" class="icon-link" aria-label="X (Twitter)">
+                        <i class="fa-brands fa-x-twitter"></i>
+                    </a>
+                    <a href="http://discordapp.com/users/960837003493113866" target="_blank" class="icon-link" aria-label="Discord">
+                        <i class="fa-brands fa-discord"></i>
+                    </a>
+                    <a href="https://yui-model.booth.pm/" target="_blank" class="icon-link" aria-label="BOOTH">
+                        <i class="fas fa-store"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Scroll Indicator -->
+            <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-cream-300 dark:text-cocoa-400 animate-bounce z-30">
+                <i class="fas fa-chevron-down text-2xl"></i>
+            </div>
+        </section>
+
+        
+        <section id="about" class="container mx-auto px-6 py-16 md:py-24 relative">
+            
+            
+            
+            <div class="max-w-3xl mx-auto 
+                        fade-in-right
+                        about-card-container"> 
+                
+                
+                
+                <div class="about-card-content border-2 border-white/50 dark:border-warmbrown-900/50"> 
+                
+                    <div class="relative flex-shrink-0">
+                        <div class="absolute -inset-1 bg-gradient-to-r from-coral-300 to-orange-200 rounded-full blur opacity-75"></div>
+                        <img src="https://pbs.twimg.com/profile_images/1871721994728984576/IoY_wi39_400x400.jpg" alt="アバターアイコン" class="relative w-32 h-32 rounded-full shadow-lg mb-6 md:mb-0 border-4 border-white dark:border-warmbrown-800 avatar-hover-effect object-cover">
+                    </div>
+
+                    
+                    <div class="text-center md:text-left w-full pl-0 md:pl-8">
+                        <h2 class="text-4xl font-extrabold text-cream-800 mb-6 dark:text-cream-50 font-sans">About Me</h2>
+                        <p class="text-lg text-cream-700 dark:text-cream-200 leading-relaxed font-medium">
+                            大人数はちょっと苦手です…！<br>のんびり過ごすのが好きです。</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        
+        <section id="history" class="py-16 md:py-24 history-bg overflow-hidden">
+            <div class="container mx-auto px-6">
+                
+                <h2 class="text-4xl font-bold text-center mb-12 md:mb-16 text-cream-800 fade-in-up">
+                    <span class="heading-animate-line">History</span>
+                </h2>
+
+                
+                <div class="hidden md:block relative max-w-6xl mx-auto timeline-horizontal">
+                    
+                    <div class="absolute left-0 w-full h-8 flex items-center timeline-arrow-wrapper">
+                        
+                        <div class="history-line absolute h-full w-full bg-transparent flex">
+                            
+                            <div class="arrow-segment timeline-segment timeline-segment-1"></div>
+                            <div class="arrow-segment timeline-segment timeline-segment-2"></div>
+                            <div class="arrow-segment timeline-segment timeline-segment-3"></div>
+                            <div class="arrow-segment timeline-segment timeline-segment-4"></div>
+                            <div class="arrow-segment timeline-segment timeline-segment-5"></div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="relative flex justify-between w-full h-auto">
+                        
+                        
+                        
+                        <div class="timeline-item timeline-item-bottom fade-in-up group" style="transition-delay: 0.2s;">
+                            <div class="timeline-content-wrapper">
+                                <div class="timeline-year font-extrabold">2022.03.06</div>
+                                <div class="timeline-description text-gray-700 mt-2 text-base">VRChat デビュー</div>
+                            </div>
+                            <div class="timeline-icon-box">
+                                <i class="fa-solid fa-rocket timeline-icon"></i>
+                            </div>
+                            <div class="history-popup-horizontal">
+                                <img src="https://pbs.twimg.com/media/FRkUO1zVgAMwtp3?format=jpg&name=large" alt="VRChat デビュー" class="w-full h-32 object-cover">
+                                <div class="p-4">
+                                    <h4 class="font-bold text-gray-800">VRChat デビュー</h4>
+                                    <p class="text-sm text-gray-600 mt-1">初めてVRの世界へ。正直あんまり覚えてません！</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div class="timeline-item timeline-item-top fade-in-up group" style="transition-delay: 0.2s;">
+                            <div class="timeline-content-wrapper">
+                                <div class="timeline-year font-extrabold text-2xl">2022.09.28</div>
+                                <div class="timeline-description text-gray-700 mt-2 text-base">紫枠</div>
+                            </div>
+                            <div class="timeline-icon-box">
+                                <i class="fa-solid fa-arrow-up"></i>
+                            </div>
+                            <div class="history-popup-horizontal">
+                                <div class="p-4">
+                                    <h4 class="font-bold text-gray-800">トラステッド</h4>
+                                    <p class="text-sm text-gray-600 mt-1">ついにトラステッドユーザー、、、</p>
+                                </div>
+                                <img src="https://pbs.twimg.com/media/Fd4Z7YsaMAAKhea?format=jpg&name=medium" alt="トラステッド" class="w-full h-32 object-cover">
+                            </div>
+                        </div>
+
+                        
+                        <div class="timeline-item timeline-item-bottom fade-in-up group" style="transition-delay: 0.4s;">
+                            <div class="timeline-icon-box">
+                                <i class="fa-solid fa-person"></i>
+                            </div>
+                            <div class="timeline-content-wrapper">
+                                <div class="timeline-year font-extrabold text-2xl">2024.05.15</div>
+                                <div class="timeline-description text-gray-700 mt-2 text-base">ライムちゃん</div>
+                            </div>
+                            <div class="history-popup-horizontal">
+                                <img src="https://pbs.twimg.com/media/GNlu5l0a4AAo8Bx?format=jpg&name=large" alt="ライムちゃん" class="w-full h-32 object-cover">
+                                <div class="p-4">
+                                    <h4 class="font-bold text-gray-800">ライムちゃんになる</h4>
+                                    <p class="text-sm text-gray-600 mt-1">フレンドさんからいただいてライムちゃんになりました</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="timeline-item timeline-item-top fade-in-up group" style="transition-delay: 0.6s;">
+                            <div class="timeline-content-wrapper">
+                                <div class="timeline-year font-extrabold text-2xl">2024.11.11</div>
+                                <div class="timeline-description text-gray-700 mt-2 text-base">シフォンちゃん</div>
+                            </div>
+                            <div class="timeline-icon-box">
+                                <i class="fa-solid fa-person"></i>
+                            </div>
+                            <div class="history-popup-horizontal">
+                                <div class="p-4">
+                                    <h4 class="font-bold text-gray-800">シフォンちゃんになる</h4>
+                                    <p class="text-sm text-gray-600 mt-1">シフォンちゃん似合いそうと言われたのでシフォンちゃんになりました</p>
+                                </div>
+                                <img src="https://pbs.twimg.com/media/Gd_f-Pta0AED6lb?format=jpg&name=large" alt="シフォンちゃん" class="w-full h-32 object-cover">
+                            </div>
+                        </div>
+
+                        
+                        <div class="timeline-item timeline-item-bottom fade-in-up group" style="transition-delay: 0.8s;">
+                            <div class="timeline-icon-box">
+                                <i class="fa-solid fa-earth-americas timeline-icon"></i>
+                            </div>
+                            <div class="timeline-content-wrapper">
+                                <div class="timeline-year font-extrabold text-2xl">2025.11.24</div>
+                                <div class="timeline-description text-gray-700 mt-2 text-base">ショコラちゃん</div>
+                            </div>
+                            <div class="history-popup-horizontal">
+                                <img src="https://pbs.twimg.com/media/G8CkJzcbcAAd0GB?format=jpg&name=large" alt="NoImage" class="w-full h-32 object-cover">
+                                <div class="p-4">
+                                    <h4 class="font-bold text-gray-800">ショコラちゃんになる</h4>
+                                    <p class="text-sm text-gray-600 mt-1">1年遅れでショコラちゃんに……</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                <div class="md:hidden max-w-2xl mx-auto relative timeline-vertical">
+                    
+                    <div class="history-line-mobile absolute left-2 top-0 w-0.5 text-gray-500"></div>
+                    
+                    
+                    <div class="relative pl-16 mb-12 group fade-in-up">
+                        <div class="timeline-icon-box-mobile">
+                            <i class="fa-solid fa-rocket timeline-icon"></i>
+                        </div>
+                        <div class="timeline-content-wrapper-mobile">
+                            
+                            <div class="timeline-year font-extrabold text-xl">2022.03.06</div>
+                            <div class="timeline-description text-gray-700 mt-1 text-base">VRChat デビュー</div>
+                        </div>
+                        <div class="history-popup-mobile">
+                            <img src="https://pbs.twimg.com/media/FRkUO1zVgAMwtp3?format=jpg&name=large" alt="VRChat デビュー" class="w-full h-32 object-cover rounded-t-lg">
+                            <div class="p-4">
+                                <h4 class="font-bold text-gray-800">VRChat デビュー</h4>
+                                <p class="text-sm text-gray-600 mt-1">初めてVRの世界へ。正直あんまり覚えてません！</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="relative pl-16 mb-12 group fade-in-up">
+                        <div class="timeline-icon-box-mobile">
+                            <i class="fa-solid fa-arrow-up timeline-icon"></i>
+                        </div>
+                        <div class="timeline-content-wrapper-mobile">
+                            
+                            <div class="timeline-year font-extrabold text-xl">2022.09.28</div>
+                            <div class="timeline-description text-gray-700 mt-1 text-base">紫枠</div>
+                        </div>
+                        <div class="history-popup-mobile">
+                            <img src="https://pbs.twimg.com/media/Fd4Z7YsaMAAKhea?format=jpg&name=medium" alt="VRChat デビュー" class="w-full h-32 object-cover rounded-t-lg">
+                            <div class="p-4">
+                                <h4 class="font-bold text-gray-800">トラステッド</h4>
+                                <p class="text-sm text-gray-600 mt-1">ついにトラステッドユーザー、、、</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="relative pl-16 mb-12 group fade-in-up" style="transition-delay: 0.1s;">
+                        <div class="timeline-icon-box-mobile">
+                            <i class="fa-solid fa-person"></i>
+                        </div>
+                        <div class="timeline-content-wrapper-mobile">
+                            
+                            <div class="timeline-year font-extrabold text-xl">2024.05.15</div>
+                            <div class="timeline-description text-gray-700 mt-1 text-base">ライムちゃん</div>
+                        </div>
+                        <div class="history-popup-mobile">
+                            <img src="https://pbs.twimg.com/media/GNlu5l0a4AAo8Bx?format=jpg&name=large" alt="ライムちゃん" class="w-full h-32 object-cover rounded-t-lg">
+                            <div class="p-4">
+                                <h4 class="font-bold text-gray-800">ライムちゃんになる</h4>
+                                <p class="text-sm text-gray-600 mt-1">フレンドさんからいただいてライムちゃんになりました</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="relative pl-16 mb-12 group fade-in-up" style="transition-delay: 0.2s;">
+                        <div class="timeline-icon-box-mobile">
+                            <i class="fa-solid fa-person"></i>
+                        </div>
+                        <div class="timeline-content-wrapper-mobile">
+                            
+                            <div class="timeline-year font-extrabold text-xl">2024.11.11</div>
+                            <div class="timeline-description text-gray-700 mt-1 text-base">シフォンちゃん</div>
+                        </div>
+                        <div class="history-popup-mobile">
+                            <img src="https://pbs.twimg.com/media/Gd_f-Pta0AED6lb?format=jpg&name=large" alt="シフォンちゃん" class="w-full h-32 object-cover rounded-t-lg">
+                            <div class="p-4">
+                                <h4 class="font-bold text-gray-800">シフォンちゃんになる</h4>
+                                <p class="text-sm text-gray-600 mt-1">シフォンちゃん似合いそうと言われたのでシフォンちゃんになりました</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="relative pl-16 mb-12 group fade-in-up" style="transition-delay: 0.3s;">
+                        <div class="timeline-icon-box-mobile">
+                            <i class="fa-solid fa-earth-americas timeline-icon"></i>
+                        </div>
+                        <div class="timeline-content-wrapper-mobile">
+                            
+                            <div class="timeline-year font-extrabold text-xl">2025.11.24</div>
+                            <div class="timeline-description text-gray-700 mt-1 text-base">ショコラちゃん</div>
+                        </div>
+                        <div class="history-popup-mobile">
+                            <img src="https://pbs.twimg.com/media/G8CkJzcbcAAd0GB?format=jpg&name=large" alt="未定" class="w-full h-32 object-cover rounded-t-lg">
+                            <div class="p-4">
+                                <h4 class="font-bold text-gray-800">ショコラちゃんになる</h4>
+                                <p class="text-sm text-gray-600 mt-1">1年遅れでショコラちゃんに……</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        
+        <section id="gallery" class="py-16 md:py-24 gallery-bg overflow-hidden">
+            <div class="container mx-auto px-6">
+                
+                <h2 class="text-4xl font-bold text-center mb-16 text-cream-800 fade-in-up">
+                    <span class="heading-animate-line">Gallery</span>
+                </h2>
+            </div>
+        
+            
+            <div class="gallery-scroller" data-direction="left">
+                <div class="gallery-track">
+
+                    <div class="gallery-scroller-item is-portrait">
+                        <img src="https://pbs.twimg.com/media/G8_RwKMaUAAaj42?format=jpg&name=large" alt="ギャラリー画像" />
+                        <div class="image-overlay"></div>
+                        <i class="fas fa-search-plus zoom-icon"></i>
+                    </div>
+                    <div class="gallery-scroller-item is-portrait">
+                        <img src="https://pbs.twimg.com/media/G87W9ixbYAEsNCL?format=jpg&name=large" alt="ギャラリー画像" />
+                        <div class="image-overlay"></div>
+                        <i class="fas fa-search-plus zoom-icon"></i>
+                    </div>
+                    <div class="gallery-scroller-item is-portrait">
+                        <img src="https://pbs.twimg.com/media/G8CkJzcbcAAd0GB?format=jpg&name=large" alt="ギャラリー画像" />
+                        <div class="image-overlay"></div>
+                        <i class="fas fa-search-plus zoom-icon"></i>
+                    </div>
+                    <div class="gallery-scroller-item is-portrait">
+                        <img src="https://pbs.twimg.com/media/G6_tt-taYAA_Sxa?format=png&name=900x900" alt="ギャラリー画像" />
+                        <div class="image-overlay"></div>
+                        <i class="fas fa-search-plus zoom-icon"></i>
+                    </div>
+                    <div class="gallery-scroller-item is-portrait">
+                        <img src="https://pbs.twimg.com/media/G5knLYSacAIiv2M?format=png&name=900x900" alt="ギャラリー画像" />
+                        <div class="image-overlay"></div>
+                        <i class="fas fa-search-plus zoom-icon"></i>
+                    </div>
+                    <div class="gallery-scroller-item is-portrait">
+                        <img src="https://pbs.twimg.com/media/G5ha1GmbcAI5Es2?format=jpg&name=large" alt="ギャラリー画像" />
+                        <div class="image-overlay"></div>
+                        <i class="fas fa-search-plus zoom-icon"></i>
+                    </div>
+                    <div class="gallery-scroller-item is-portrait">
+                        <img src="https://pbs.twimg.com/media/G4-tdZ0bEAAkvbK?format=jpg&name=large" alt="ギャラリー画像" />
+                        <div class="image-overlay"></div>
+                        <i class="fas fa-search-plus zoom-icon"></i>
+                    </div>
+                    <div class="gallery-scroller-item is-portrait">
+                        <img src="https://pbs.twimg.com/media/G2znPWRbAAAwF7r?format=jpg&name=large" alt="ギャラリー画像" />
+                        <div class="image-overlay"></div>
+                        <i class="fas fa-search-plus zoom-icon"></i>
+                    </div>
+                    <div class="gallery-scroller-item is-portrait">
+                        <img src="https://pbs.twimg.com/media/G1_DJKVbkAANE_x?format=jpg&name=large" alt="ギャラリー画像" />
+                        <div class="image-overlay"></div>
+                        <i class="fas fa-search-plus zoom-icon"></i>
+                    </div>
+                    <div class="gallery-scroller-item is-portrait">
+                        <img src="https://pbs.twimg.com/media/G1W7uiIaUAASwsR?format=jpg&name=large" alt="ギャラリー画像" />
+                        <div class="image-overlay"></div>
+                        <i class="fas fa-search-plus zoom-icon"></i>
+                    </div>
+                    <div class="gallery-scroller-item is-portrait">
+                        <img src="https://pbs.twimg.com/media/G0UWVKOa4AA2ivJ?format=jpg&name=large" alt="ギャラリー画像" />
+                        <div class="image-overlay"></div>
+                        <i class="fas fa-search-plus zoom-icon"></i>
+                    </div>
+                    <div class="gallery-scroller-item is-portrait">
+                        <img src="https://pbs.twimg.com/media/Gzg1FbzbkAMDTCU?format=jpg&name=large" alt="ギャラリー画像" />
+                        <div class="image-overlay"></div>
+                        <i class="fas fa-search-plus zoom-icon"></i>
+                    </div>
+                    <div class="gallery-scroller-item is-portrait">
+                        <img src="https://pbs.twimg.com/media/GyTqAX6a4AEnGe1?format=jpg&name=large" alt="ギャラリー画像" />
+                        <div class="image-overlay"></div>
+                        <i class="fas fa-search-plus zoom-icon"></i>
+                    </div>
+                    <div class="gallery-scroller-item">
+                        <img src="https://pbs.twimg.com/media/Gx_Ge7FasAAjU8T?format=jpg&name=large" alt="ギャラリー画像" />
+                        <div class="image-overlay"></div>
+                        <i class="fas fa-search-plus zoom-icon"></i>
+                    </div>
+                    <div class="gallery-scroller-item is-portrait">
+                        <img src="https://pbs.twimg.com/media/GxhRqnQbUAADbwx?format=jpg&name=large" alt="ギャラリー画像" />
+                        <div class="image-overlay"></div>
+                        <i class="fas fa-search-plus zoom-icon"></i>
+                    </div>
+                    <div class="gallery-scroller-item is-portrait">
+                        <img src="https://pbs.twimg.com/media/GwsYAhXbgAU6mqP?format=jpg&name=large" alt="ギャラリー画像" />
+                        <div class="image-overlay"></div>
+                        <i class="fas fa-search-plus zoom-icon"></i>
+                    </div>
+                    <div class="gallery-scroller-item is-portrait">
+                        <img src="https://pbs.twimg.com/media/Gwa-g0NbEAEh4v5?format=jpg&name=large" alt="ギャラリー画像" />
+                        <div class="image-overlay"></div>
+                        <i class="fas fa-search-plus zoom-icon"></i>
+                    </div>
+                    <div class="gallery-scroller-item is-portrait">
+                        <img src="https://pbs.twimg.com/media/GvBYKD6XwAAsDKP?format=jpg&name=large" alt="ギャラリー画像" />
+                        <div class="image-overlay"></div>
+                        <i class="fas fa-search-plus zoom-icon"></i>
+                    </div>
+                    <div class="gallery-scroller-item is-portrait">
+                        <img src="https://pbs.twimg.com/media/GtrY7fbaQAAFAgI?format=jpg&name=large" alt="ギャラリー画像" />
+                        <div class="image-overlay"></div>
+                        <i class="fas fa-search-plus zoom-icon"></i>
+                    </div>
+                    <div class="gallery-scroller-item is-portrait">
+                        <img src="https://pbs.twimg.com/media/GsqS4nTbQAEqg7h?format=jpg&name=large" alt="ギャラリー画像" />
+                        <div class="image-overlay"></div>
+                        <i class="fas fa-search-plus zoom-icon"></i>
+                    </div>
+
+                </div>
+            </div>
+        
+            
+            <div class="gallery-scroller mt-8" data-direction="right">
+                <div class="gallery-track">
+                    
+                    
+                    <div class="gallery-scroller-item is-portrait">
+                        <img src="https://pbs.twimg.com/media/Gsi_mLLasAAHDg4?format=jpg&name=large" alt="ギャラリー画像" />
+                        <div class="image-overlay"></div>
+                        <i class="fas fa-search-plus zoom-icon"></i>
+                    </div>
+                    <div class="gallery-scroller-item">
+                        <img src="https://pbs.twimg.com/media/GsdL9SpbQAAcjQr?format=jpg&name=large" alt="ギャラリー画像" />
+                        <div class="image-overlay"></div>
+                        <i class="fas fa-search-plus zoom-icon"></i>
+                    </div>
+                    <div class="gallery-scroller-item is-portrait">
+                        <img src="https://pbs.twimg.com/media/Gr-bTUyXkAASm_g?format=jpg&name=large" alt="ギャラリー画像" />
+                        <div class="image-overlay"></div>
+                        <i class="fas fa-search-plus zoom-icon"></i>
+                    </div>
+                    <div class="gallery-scroller-item">
+                        <img src="https://pbs.twimg.com/media/GrWCZ9zaMAA58Eh?format=jpg&name=large" alt="ギャラリー画像" />
+                        <div class="image-overlay"></div>
+                        <i class="fas fa-search-plus zoom-icon"></i>
+                    </div>
+                    <div class="gallery-scroller-item is-portrait">
+                        <img src="https://pbs.twimg.com/media/GrDtPtzbQAAkf4q?format=jpg&name=large" alt="ギャラリー画像" />
+                        <div class="image-overlay"></div>
+                        <i class="fas fa-search-plus zoom-icon"></i>
+                    </div>
+                    <div class="gallery-scroller-item is-portrait">
+                        <img src="https://pbs.twimg.com/media/Gq3JPbUWYAAQNRQ?format=jpg&name=large" alt="ギャラリー画像" />
+                        <div class="image-overlay"></div>
+                        <i class="fas fa-search-plus zoom-icon"></i>
+                    </div>
+                    <div class="gallery-scroller-item is-portrait">
+                        <img src="https://pbs.twimg.com/media/Gqfyd9cWgAAaAJY?format=jpg&name=large" alt="ギャラリー画像" />
+                        <div class="image-overlay"></div>
+                        <i class="fas fa-search-plus zoom-icon"></i>
+                    </div>
+                    <div class="gallery-scroller-item is-portrait">
+                        <img src="https://pbs.twimg.com/media/GqPNWX1bAAUhTRe?format=jpg&name=large" alt="ギャラリー画像" />
+                        <div class="image-overlay"></div>
+                        <i class="fas fa-search-plus zoom-icon"></i>
+                    </div>
+                    <div class="gallery-scroller-item is-portrait">
+                        <img src="https://pbs.twimg.com/media/GpL3klqa4AIa10d?format=jpg&name=large" alt="ギャラリー画像" />
+                        <div class="image-overlay"></div>
+                        <i class="fas fa-search-plus zoom-icon"></i>
+                    </div>
+                    <div class="gallery-scroller-item is-portrait">
+                        <img src="https://pbs.twimg.com/media/GpLsI5wb0AANOp9?format=jpg&name=large" alt="ギャラリー画像" />
+                        <div class="image-overlay"></div>
+                        <i class="fas fa-search-plus zoom-icon"></i>
+                    </div>
+                    <div class="gallery-scroller-item is-portrait">
+                        <img src="https://pbs.twimg.com/media/Go8VlyIa8AANf-x?format=jpg&name=large" alt="ギャラリー画像" />
+                        <div class="image-overlay"></div>
+                        <i class="fas fa-search-plus zoom-icon"></i>
+                    </div>
+                    <div class="gallery-scroller-item">
+                        <img src="https://pbs.twimg.com/media/GoYGDPwXUAAhKdw?format=jpg&name=medium" alt="ギャラリー画像" />
+                        <div class="image-overlay"></div>
+                        <i class="fas fa-search-plus zoom-icon"></i>
+                    </div>
+                    <div class="gallery-scroller-item is-portrait">
+                        <img src="https://pbs.twimg.com/media/GnHMbXjbgAIcoH5?format=jpg&name=large" alt="ギャラリー画像" />
+                        <div class="image-overlay"></div>
+                        <i class="fas fa-search-plus zoom-icon"></i>
+                    </div>
+                    <div class="gallery-scroller-item">
+                        <img src="https://pbs.twimg.com/media/GkxkaHeXMAAffpp?format=jpg&name=large" alt="ギャラリー画像" />
+                        <div class="image-overlay"></div>
+                        <i class="fas fa-search-plus zoom-icon"></i>
+                    </div>
+                    <div class="gallery-scroller-item is-portrait">
+                        <img src="https://pbs.twimg.com/media/GkbrCb-aYAArKrY?format=jpg&name=large" alt="ギャラリー画像" />
+                        <div class="image-overlay"></div>
+                        <i class="fas fa-search-plus zoom-icon"></i>
+                    </div>
+                    <div class="gallery-scroller-item is-portrait">
+                        <img src="https://pbs.twimg.com/media/GkIvbpQaAAQD1TS?format=jpg&name=large" alt="ギャラリー画像" />
+                        <div class="image-overlay"></div>
+                        <i class="fas fa-search-plus zoom-icon"></i>
+                    </div>
+                    <div class="gallery-scroller-item is-portrait">
+                        <img src="https://pbs.twimg.com/media/Gjvxly0b0AAITes?format=jpg&name=large" alt="ギャラリー画像" />
+                        <div class="image-overlay"></div>
+                        <i class="fas fa-search-plus zoom-icon"></i>
+                    </div>
+                    <div class="gallery-scroller-item is-portrait">
+                        <img src="https://pbs.twimg.com/media/GibHE1daYAEGU7q?format=jpg&name=large" alt="ギャラリー画像" />
+                        <div class="image-overlay"></div>
+                        <i class="fas fa-search-plus zoom-icon"></i>
+                    </div>
+
+                </div>
+            </div>
+
+
+            
+            <div class="gallery-scroller" data-direction="left">
+                <div class="gallery-track mt-8">
+
+                    <div class="gallery-scroller-item is-portrait">
+                        <img src="https://pbs.twimg.com/media/Ghc-mq9acAMypDy?format=jpg&name=large" alt="ギャラリー画像" />
+                        <div class="image-overlay"></div>
+                        <i class="fas fa-search-plus zoom-icon"></i>
+                    </div>
+                    <div class="gallery-scroller-item is-portrait">
+                        <img src="https://pbs.twimg.com/media/GhON8EwbQAAZKH2?format=jpg&name=large" alt="ギャラリー画像" />
+                        <div class="image-overlay"></div>
+                        <i class="fas fa-search-plus zoom-icon"></i>
+                    </div>
+                    <div class="gallery-scroller-item is-portrait">
+                        <img src="https://pbs.twimg.com/media/GgJU7v8bYAQsTxy?format=jpg&name=large" alt="ギャラリー画像" />
+                        <div class="image-overlay"></div>
+                        <i class="fas fa-search-plus zoom-icon"></i>
+                    </div>
+                    <div class="gallery-scroller-item is-portrait">
+                        <img src="https://pbs.twimg.com/media/GfmRPl7a4AA7Muw?format=jpg&name=large" alt="ギャラリー画像" />
+                        <div class="image-overlay"></div>
+                        <i class="fas fa-search-plus zoom-icon"></i>
+                    </div>
+                    <div class="gallery-scroller-item is-portrait">
+                        <img src="https://pbs.twimg.com/media/GeawOMhbUAARdAT?format=jpg&name=large" alt="ギャラリー画像" />
+                        <div class="image-overlay"></div>
+                        <i class="fas fa-search-plus zoom-icon"></i>
+                    </div>
+                    <div class="gallery-scroller-item is-portrait">
+                        <img src="https://pbs.twimg.com/media/Gd_f-Pta0AED6lb?format=jpg&name=large" alt="ギャラリー画像" />
+                        <div class="image-overlay"></div>
+                        <i class="fas fa-search-plus zoom-icon"></i>
+                    </div>
+                    <div class="gallery-scroller-item is-portrait">
+                        <img src="https://pbs.twimg.com/media/GcKZ_zHakAEhhxV?format=jpg&name=large" alt="ギャラリー画像" />
+                        <div class="image-overlay"></div>
+                        <i class="fas fa-search-plus zoom-icon"></i>
+                    </div>
+                    <div class="gallery-scroller-item is-portrait">
+                        <img src="https://pbs.twimg.com/media/GcFELJvbMAABK8z?format=jpg&name=large" alt="ギャラリー画像" />
+                        <div class="image-overlay"></div>
+                        <i class="fas fa-search-plus zoom-icon"></i>
+                    </div>
+                    <div class="gallery-scroller-item is-portrait">
+                        <img src="https://pbs.twimg.com/media/GZaYLWrasAMWwHR?format=jpg&name=large" alt="ギャラリー画像" />
+                        <div class="image-overlay"></div>
+                        <i class="fas fa-search-plus zoom-icon"></i>
+                    </div>
+                    <div class="gallery-scroller-item is-portrait">
+                        <img src="https://pbs.twimg.com/media/GYxfzQbbQAIErSt?format=jpg&name=large" alt="ギャラリー画像" />
+                        <div class="image-overlay"></div>
+                        <i class="fas fa-search-plus zoom-icon"></i>
+                    </div>
+                    <div class="gallery-scroller-item is-portrait">
+                        <img src="https://pbs.twimg.com/media/GWOOhtGbAAAkTCS?format=jpg&name=large" alt="ギャラリー画像" />
+                        <div class="image-overlay"></div>
+                        <i class="fas fa-search-plus zoom-icon"></i>
+                    </div>
+                    
+                    <!--ここからセフィラちゃん-->
+                    <div class="gallery-scroller-item">
+                        <img src="https://pbs.twimg.com/media/GOR719ZbgAAZuqs?format=jpg&name=large" alt="ギャラリー画像" />
+                        <div class="image-overlay"></div>
+                        <i class="fas fa-search-plus zoom-icon"></i>
+                    </div>
+                    <div class="gallery-scroller-item">
+                        <img src="https://pbs.twimg.com/media/GNlu5l0a4AAo8Bx?format=jpg&name=large" alt="ギャラリー画像" />
+                        <div class="image-overlay"></div>
+                        <i class="fas fa-search-plus zoom-icon"></i>
+                    </div>
+                    <div class="gallery-scroller-item is-portrait">
+                        <img src="https://pbs.twimg.com/media/GL3GD1raIAA-Qmj?format=jpg&name=large" alt="ギャラリー画像" />
+                        <div class="image-overlay"></div>
+                        <i class="fas fa-search-plus zoom-icon"></i>
+                    </div>
+                    <div class="gallery-scroller-item">
+                        <img src="https://pbs.twimg.com/media/GLKZZzkawAA4swl?format=jpg&name=large" alt="ギャラリー画像" />
+                        <div class="image-overlay"></div>
+                        <i class="fas fa-search-plus zoom-icon"></i>
+                    </div>
+                    <div class="gallery-scroller-item is-portrait">
+                        <img src="https://pbs.twimg.com/media/GKV1wAUbUAAFmav?format=jpg&name=large" alt="ギャラリー画像" />
+                        <div class="image-overlay"></div>
+                        <i class="fas fa-search-plus zoom-icon"></i>
+                    </div>
+                    <div class="gallery-scroller-item is-portrait">
+                        <img src="https://pbs.twimg.com/media/GKV0UQlaAAA3o7t?format=jpg&name=large" alt="ギャラリー画像" />
+                        <div class="image-overlay"></div>
+                        <i class="fas fa-search-plus zoom-icon"></i>
+                    </div>
+                    <div class="gallery-scroller-item is-portrait">
+                        <img src="https://pbs.twimg.com/media/F3ye_mBaEAAVMqp?format=jpg&name=large" alt="ギャラリー画像" />
+                        <div class="image-overlay"></div>
+                        <i class="fas fa-search-plus zoom-icon"></i>
+                    </div>
+                    <div class="gallery-scroller-item">
+                        <img src="https://pbs.twimg.com/media/F3EF-M3aUAAsMK1?format=jpg&name=large" alt="ギャラリー画像" />
+                        <div class="image-overlay"></div>
+                        <i class="fas fa-search-plus zoom-icon"></i>
+                    </div>
+                    <div class="gallery-scroller-item is-portrait">
+                        <img src="https://pbs.twimg.com/media/FzMgMAKaYAEtEky?format=jpg&name=large" alt="ギャラリー画像" />
+                        <div class="image-overlay"></div>
+                        <i class="fas fa-search-plus zoom-icon"></i>
+                    </div>
+                    <div class="gallery-scroller-item">
+                        <img src="https://pbs.twimg.com/media/FwxRSMAaYAE09cY?format=jpg&name=large" alt="ギャラリー画像" />
+                        <div class="image-overlay"></div>
+                        <i class="fas fa-search-plus zoom-icon"></i>
+                    </div>
+                    <div class="gallery-scroller-item">
+                        <img src="https://pbs.twimg.com/media/FwXYb4lacAEzTbd?format=jpg&name=large" alt="ギャラリー画像" />
+                        <div class="image-overlay"></div>
+                        <i class="fas fa-search-plus zoom-icon"></i>
+                    </div>
+                    <div class="gallery-scroller-item">
+                        <img src="https://pbs.twimg.com/media/FwSa07TagAAukfS?format=jpg&name=large" alt="ギャラリー画像" />
+                        <div class="image-overlay"></div>
+                        <i class="fas fa-search-plus zoom-icon"></i>
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Illustrations Section -->
+        <section id="illustrations" class="py-24 bg-white dark:bg-cocoa-900/50 transition-colors duration-300">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold text-center mb-16 text-cocoa-800 dark:text-cream-100 fade-in-up">
+                    <span class="heading-animate-line">Illustrations</span>
+                </h2>
+                
+                <!-- Masonry Layout for Illustrations -->
+                <div class="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
+                    <!-- Illustration 1 -->
+                    <div class="illustration-card group fade-in-up break-inside-avoid mb-6" style="transition-delay: 0.1s;">
+                        <div class="relative overflow-hidden cursor-pointer rounded-3xl">
+                            <img src="https://pbs.twimg.com/media/GV6EzzWbUAAYj8S?format=jpg&name=4096x4096" alt="Illustration 1" class="w-full h-auto block transition-transform duration-500 group-hover:scale-110">
+                            <div class="ill-overlay absolute inset-0 flex flex-col justify-end p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <h3 class="text-white text-xl font-bold translate-y-4 group-hover:translate-y-0 transition-transform duration-300">After a long time...</h3>
+                                <p class="text-rose-100 text-sm mt-1 translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75">2024.08.26</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Illustration 2 -->
+                    <div class="illustration-card group fade-in-up break-inside-avoid mb-6" style="transition-delay: 0.2s;">
+                        <div class="relative overflow-hidden cursor-pointer rounded-3xl">
+                            <img src="https://pbs.twimg.com/media/GO0feyMawAA7hhv?format=jpg&name=large" alt="Illustration 2" class="w-full h-auto block transition-transform duration-500 group-hover:scale-110">
+                            <div class="ill-overlay absolute inset-0 flex flex-col justify-end p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <h3 class="text-white text-xl font-bold translate-y-4 group-hover:translate-y-0 transition-transform duration-300">SD first attempt</h3>
+                                <p class="text-rose-100 text-sm mt-1 translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75">2024.05.30</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Illustration 3 -->
+                    <div class="illustration-card group fade-in-up break-inside-avoid mb-6" style="transition-delay: 0.3s;">
+                        <div class="relative overflow-hidden cursor-pointer rounded-3xl">
+                            <img src="https://pbs.twimg.com/media/GI9HdoxaQAAa0dv?format=jpg&name=large" alt="Illustration 3" class="w-full h-auto block transition-transform duration-500 group-hover:scale-110">
+                            <div class="ill-overlay absolute inset-0 flex flex-col justify-end p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <h3 class="text-white text-xl font-bold translate-y-4 group-hover:translate-y-0 transition-transform duration-300">First upload</h3>
+                                <p class="text-rose-100 text-sm mt-1 translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75">2024.03.18</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-12 text-center fade-in-up" style="transition-delay: 0.4s;">
+                    <a href="https://x.com/Yui_VRChat/media" target="_blank" class="inline-flex items-center px-6 py-3 bg-white dark:bg-cream-900 text-cream-800 dark:text-cream-200 rounded-full shadow-md hover:bg-cream-50 dark:hover:bg-cream-600 transition-colors duration-300">
+                        <i class="fas fa-external-link-alt mr-2"></i>
+                        More on X(Twitter)
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    
+    <!-- Footer -->
+    <footer class="py-12 footer-bg">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-cream-900">
+                &copy; 2025 Yui. All Rights Reserved. <br>
+            </p>
+        </div>
+    </footer>
+
+    
+    <div id="lightbox" class="lightbox-overlay">
+        
+        <button id="lightbox-close" class="lightbox-close-btn">&times;</button>
+        <div class="lightbox-content">
+            <img id="lightbox-image" src="" alt="拡大画像">
+        </div>
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
